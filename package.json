@@ -21,5 +21,9 @@
   "homepage": "https://github.com/Eric-lab-star/YoutubeClone2#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8"
   }
 }
