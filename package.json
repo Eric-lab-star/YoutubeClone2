@@ -1,7 +1,7 @@
 {
   "name": "youtubeclone2",
   "version": "1.0.0",
-  "description": "Just watch ",
+  "description": "i am learning setup",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec babel-node index.js"
@@ -11,16 +11,17 @@
     "url": "git+https://github.com/Eric-lab-star/YoutubeClone2.git"
   },
   "keywords": [
-    "video"
+    "beginner"
   ],
-  "author": "Eric Kim",
+  "author": "Eric kim",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Eric-lab-star/YoutubeClone2/issues"
   },
   "homepage": "https://github.com/Eric-lab-star/YoutubeClone2#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",

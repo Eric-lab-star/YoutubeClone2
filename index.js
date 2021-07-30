@@ -1,22 +1,25 @@
-import express from "express";
+import express from "express"
+import morgan from "morgan";
 
-const PORT = 4000;
+const logger = morgan("combined");
 const app = express();
 
-const middleWare = (req, res, next)=> {
- console.log(`someone is requesting ${req.url}`);
- next();
-}
+
+
+const middleware = (req,res,next) => {
+    console.log(`I am middleware`);
+    next();
+};
 
 const handleHome = (req, res) => {
-    return res.send("this is Home");
-}
-
-app.use( middleWare)
+    return res.send("<h1>This is My Home <h1>")
+};
+app.use(logger);
+app.use(middleware);
 app.get("/", handleHome);
 
-
-const handlePort = () => {
-    console.log(`server is listening to http://localhost:${PORT}🥶`);
+const handleListening = () => {
+    console.log(`server is listening to http://localhost:4000`);
 }
-app.listen(PORT, handlePort);
+
+app.listen("4000", handleListening)
