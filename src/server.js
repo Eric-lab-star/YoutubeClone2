@@ -1,35 +1,14 @@
 import express from "express"
 import morgan from "morgan";
+import globalRouter  from "./routers/home";
+import videoRouter from "./routers/videos";
+import userRouter from "./routers/user";
 
-const logger = morgan("combined");
+const logger = morgan("dev");
+
 const app = express();
 
-
-
-
-const globalRouter = express.Router();
-const handleGlobalrouter = (req, res) => {
-    return   res.send("home");
-}
-globalRouter.get("/", handleGlobalrouter);
-
-const userRouter = express.Router();
-const handleProfile = (req, res) => {
-  return  res.send("user profile");
-}
-const handleUser = (req, res) => {
- return   res.send("user");
-
-}
-userRouter.get("/profile", handleProfile);
-userRouter.get("/", handleUser);
-
-const videoRouter = express.Router();
-const handleVideo = (req, res)=> {
-    return res.send("video page");
-}
-videoRouter.get("/", handleVideo);
-
+app.use(logger);
 app.use("/", globalRouter);
 app.use("/user", userRouter);
 app.use("/video", videoRouter);
