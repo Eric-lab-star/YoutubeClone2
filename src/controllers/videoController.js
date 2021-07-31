@@ -1,6 +1,4 @@
-export const handleVideo = (req, res)=> {
-    return res.send("video page");
-}
+export const handleVideo = (req, res)=> res.render("video")
 
 export const editVideo = (req, res)=> {
     return res.send("edit your video");
