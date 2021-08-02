@@ -4,7 +4,26 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="https://unpkg.com/mvp.css")
         block title 
-    body 
-        block header  
+    body
+            
+        nav
+            ul
+                if fakeUser.login 
+                    li 
+                        a(href="/logout") Logout      
+                        div hello!  #{fakeUser.name}
+                else
+                    li      
+                        a(href="/login") Login
+                            
+        main  
+            block header
+            ul 
+                each video in videos  
+                    li=video 
+                else 
+                    li 🥲 no video 
+            
     include partials/footer.pug 
