@@ -1,4 +1,5 @@
 extends base.pug
+include mixins/video
 
 block title 
     title #{title} | Youtube
@@ -7,3 +8,10 @@ block title
 block header
     header 
         h1=title
+    h2 Videos for You
+        
+    each item in videos 
+        +video(item)
+    else     
+        li nothing found.
+           
