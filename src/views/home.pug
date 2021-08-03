@@ -1,3 +1,11 @@
-extends base    
+extends base
+include mixins/video
 block header 
-    h1 i am home
+    h1=pageTitle
+block content
+    h4
+        a(href="/video/1") Video
+    each item in videos
+        +video(item)
+    else
+        h4 nothing found
