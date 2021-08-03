@@ -4,7 +4,6 @@ export const handleProfile = (req, res) => {
 
 export const handleUser = (req, res) => res.send("user");
 
-export const handleGlobalrouter = (req, res) => res.send("this is home");
 export const joinController = (req, res) => {
   return res.send("join");
 };

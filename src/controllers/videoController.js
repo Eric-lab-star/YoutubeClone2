@@ -1,3 +1,5 @@
+export const handleGlobalrouter = (req, res) => res.render("home");
+
 export const handleVideo = (req, res) => {
   res.send("video");
 };

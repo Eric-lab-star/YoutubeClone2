@@ -1,8 +1,11 @@
-import express from "express"
-import {handleGlobalrouter, joinController, loginController, logoutController} from "../controllers/userControllers"
-
+import express from "express";
+import {
+  joinController,
+  loginController,
+  logoutController,
+} from "../controllers/userControllers";
+import { handleGlobalrouter } from "../controllers/videoController";
 const globalRouter = express.Router();
-
 
 globalRouter.get("/", handleGlobalrouter);
 globalRouter.get("/join", joinController);
