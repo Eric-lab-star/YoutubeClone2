@@ -5,6 +5,7 @@ const videos = [
     comments: 2,
     createdAt: "2 min ago",
     id: 1,
+    view: 2,
   },
   {
     title: "Scond Video",
@@ -13,6 +14,7 @@ const videos = [
     comments: 2,
     createdAt: "2 min ago",
     id: 2,
+    view: 2,
   },
   {
     title: "Third Video",
@@ -21,6 +23,7 @@ const videos = [
     comments: 2,
     createdAt: "2 min ago",
     id: 3,
+    view: 2,
   },
   {
     title: "Fourth Video",
@@ -29,6 +32,7 @@ const videos = [
     comments: 2,
     createdAt: "2 min ago",
     id: 4,
+    view: 1,
   },
 ];
 export const handleGlobalrouter = (req, res) =>
@@ -37,10 +41,15 @@ export const handleGlobalrouter = (req, res) =>
 export const handleVideo = (req, res) => {
   const { id } = req.params;
   const video = videos[id - 1];
-  res.render("video", { pageTitle: video.title });
+  res.render("video", { pageTitle: video.title, video });
 };
 
-export const editVideo = (req, res) => res.render("editVideo");
+export const editVideo = (req, res) => {
+  const { id } = req.params;
+  const video = videos[id - 1];
+  res.render("editVideo", { pageTitle: video.title, video });
+};
+export const postEditedVideo = (req, res) => {};
 
 export const uploadVideo = (req, res) => res.render("uploadVideo");
 
