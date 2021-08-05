@@ -49,7 +49,13 @@ export const editVideo = (req, res) => {
   const video = videos[id - 1];
   res.render("editVideo", { pageTitle: video.title, video });
 };
-export const postEditedVideo = (req, res) => {};
+export const postEditedVideo = (req, res) => {
+  const { id } = req.params;
+  const { title } = req.body;
+  videos[id - 1].title = title;
+  console.log(req.body);
+  return res.redirect(`/video/${id}`);
+};
 
 export const uploadVideo = (req, res) => res.render("uploadVideo");
 
