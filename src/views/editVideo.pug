@@ -4,4 +4,6 @@ block content
    h3 Change Title of  "#{pageTitle}"
    form(method="post")
         input(type="text" value=video.title name="title")
+        input(type="text", name="description", required, placeholder="Description",maxlength="90" value=video.description)
+        input(type="text", name="hashtags", required, placeholder="Hashtags" value=video.hashtags.join())
         input(type="submit" value="submit")
