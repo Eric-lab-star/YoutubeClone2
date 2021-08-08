@@ -1,62 +1,51 @@
-const videos = [
-  {
-    title: "First Video",
-    rating: 3,
-    comments: 2,
-    createdAt: "2 min ago",
-    id: 1,
-    view: 2,
-  },
-  {
-    title: "Scond Video",
-    rating: 4,
-    rating: 3,
-    comments: 2,
-    createdAt: "2 min ago",
-    id: 2,
-    view: 2,
-  },
-  {
-    title: "Third Video",
-    rating: 5,
-    rating: 3,
-    comments: 2,
-    createdAt: "2 min ago",
-    id: 3,
-    view: 2,
-  },
-  {
-    title: "Fourth Video",
-    rating: 1,
-    rating: 3,
-    comments: 2,
-    createdAt: "2 min ago",
-    id: 4,
-    view: 1,
-  },
-];
-export const handleGlobalrouter = (req, res) =>
-  res.render("home", { pageTitle: "Home", videos });
+import "../models/Video";
+import Video from "../models/Video";
 
-export const handleVideo = (req, res) => {
-  const { id } = req.params;
-  const video = videos[id - 1];
-  res.render("video", { pageTitle: video.title, video });
+export const home = async (req, res) => {
+  const videos = await Video.find({});
+  console.log(videos);
+  return res.render("home", { pageTitle: "Home", videos });
 };
 
-export const editVideo = (req, res) => {
+export const handleVideo = async (req, res) => {
   const { id } = req.params;
-  const video = videos[id - 1];
-  res.render("editVideo", { pageTitle: video.title, video });
+  const video = await Video.findById(id);
+  console.log(video);
+  if (video) {
+    return res.render("video", { pageTitle: video.title, video });
+  } else {
+    return res.render("404", { pageTitle: "Video not found" });
+  }
+};
+
+export const editVideo = async (req, res) => {
+  const { id } = req.params;
+  const video = await Video.find({});
+  res.render("editVideo", { pageTitle: `edit` });
 };
 export const postEditedVideo = (req, res) => {
   const { id } = req.params;
-  const { title } = req.body;
-  videos[id - 1].title = title;
-  console.log(req.body);
+
   return res.redirect(`/video/${id}`);
 };
 
-export const uploadVideo = (req, res) => res.render("uploadVideo");
-
+export const getUploadVideo = (req, res) => {
+  return res.render("uploadVideo", { pageTitle: "upload" });
+};
+export const postUploadVideo = async (req, res) => {
+  const { title, hashtags, description } = req.body;
+  try {
+    await Video.create({
+      title,
+      description,
+      hashtags: hashtags.split(",").map((word) => `#${word}`),
+    });
+    return res.redirect("/");
+  } catch (error) {
+    return res.render("uploadVideo", {
+      pageTitle: "upload",
+      errorMessage: error._message,
+    });
+  }
+};
 export const deleteVideo = (req, res) => res.render("deleteVideo");

@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 //아래에서 비디오 shape 을 정해주었다.
 const videoSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  createdAt: Date,
+  title: { type: String, required: true, trim: true, maxLength: 15 },
+  description: { type: String, required: true, trim: true, maxLength: 30 },
+  createdAt: { type: Date, required: true, default: Date.now },
   hashtags: [{ type: String }],
   meta: {
-    views: Number,
-    rating: Number,
+    views: { type: Number, required: true, default: 0 },
+    rating: { type: Number, required: true, default: 0 },
   },
 });
 

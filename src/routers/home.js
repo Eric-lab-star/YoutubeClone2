@@ -4,11 +4,12 @@ import {
   loginController,
   logoutController,
 } from "../controllers/userControllers";
-import { handleGlobalrouter } from "../controllers/videoController";
+import { home } from "../controllers/videoController";
 const globalRouter = express.Router();
 
-globalRouter.get("/", handleGlobalrouter);
+globalRouter.get("/", home);
 globalRouter.get("/join", joinController);
 globalRouter.get("/login", loginController);
 globalRouter.get("/logout", logoutController);
+
 export default globalRouter;

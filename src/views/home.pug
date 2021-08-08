@@ -1,9 +1,10 @@
 extends base
 include mixins/video
-block header 
-    h1=pageTitle
+
 block content
-    h3 Videos  
+    nav 
+        ul 
+            a(href="/video/upload") Upload Video
     each item in videos
         +video(item)
     else
