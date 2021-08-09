@@ -1,7 +1,7 @@
 extends base
 
 block content
-   h3 Change Title of  "#{pageTitle}"
+   h3 Edit Video: #{pageTitle}
    form(method="post")
         input(type="text" value=video.title name="title")
         input(type="text", name="description", required, placeholder="Description",maxlength="90" value=video.description)

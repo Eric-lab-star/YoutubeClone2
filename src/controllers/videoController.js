@@ -1,4 +1,3 @@
-import "../models/Video";
 import Video from "../models/Video";
 
 export const home = async (req, res) => {
@@ -19,7 +18,7 @@ export const handleVideo = async (req, res) => {
 export const editVideo = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findById(id);
-  return res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
+  return res.render("editVideo", { pageTitle: video.title, video });
 };
 
 export const postEditedVideo = async (req, res) => {
@@ -39,7 +38,7 @@ export const postEditedVideo = async (req, res) => {
 };
 
 export const getUploadVideo = (req, res) => {
-  return res.render("uploadVideo", { pageTitle: "upload" });
+  return res.render("uploadVideo", { pageTitle: "Upload" });
 };
 
 export const postUploadVideo = async (req, res) => {
@@ -54,7 +53,7 @@ export const postUploadVideo = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.render("uploadVideo", {
-      pageTitle: "upload",
+      pageTitle: "Upload Error",
       errorMessage: error._message,
     });
   }
