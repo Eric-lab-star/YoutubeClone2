@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-//아래에서 비디오 shape 을 정해주었다.
+
 const videoSchema = new mongoose.Schema({
   title: { type: String, required: true, trim: true, maxLength: 15 },
   description: { type: String, required: true, trim: true, maxLength: 30 },
@@ -9,6 +9,12 @@ const videoSchema = new mongoose.Schema({
     views: { type: Number, required: true, default: 0 },
     rating: { type: Number, required: true, default: 0 },
   },
+});
+
+videoSchema.static(`formatHashtags`, function (hashtags) {
+  return hashtags
+    .split(",")
+    .map((word) => (word.startsWith("#") ? word : `#${word}`));
 });
 
 const Video = mongoose.model("Video", videoSchema);
